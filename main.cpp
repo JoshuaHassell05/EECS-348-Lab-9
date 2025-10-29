@@ -77,6 +77,24 @@ void swap_rows(int matrix[max][max], int size, int row1, int row2) {
         std::cout << std::endl;
     }
 }
+void swap_columns(int matrix[max][max], int size, int col1, int col2) {
+    if (col1 < 0 || col2 < 0 || col1 >= size || col2 >= size) {
+        std::cout << "Invalid column indices." << std::endl;
+        return;
+    }
+    for (int i = 0; i < size; ++i) {
+        int temp = matrix[i][col1];
+        matrix[i][col1] = matrix[i][col2];
+        matrix[i][col2] = temp;
+    }
+    std::cout << "After swapping columns " << col1 << " and " << col2 << ":" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
 int main() {
     int matrix1[max][max];
@@ -90,9 +108,36 @@ int main() {
     multiply_matrices(matrix1, matrix2, size);
     sum_diagonal_elements(matrix1, size);
     sum_diagonal_elements(matrix2, size);
+    int choice;
+    std::cout << "Choose matrix for row swap (1 or 2): ";
+    std::cin >> choice;
+    int (*selected_matrix)[max];
+    if (choice == 1) {
+        selected_matrix = matrix1;
+    } else if (choice == 2) {
+        selected_matrix = matrix2;
+    } else {
+        std::cout << "Invalid choice." << std::endl;
+        return 0;
+    }
     int row1, row2;
-    std::cout << "Enter the row number from first matrix to swap: ";
+    std::cout << "Enter two row indices to swap: ";
     std::cin >> row1 >> row2;
-    swap_rows(matrix1, size, row1, row2);
+    swap_rows(selected_matrix, size, row1, row2);
+    std::cout << "Choose matrix for column swap (1 or 2): ";
+    std::cin >> choice;
+    int (*selected_matrix)[max];
+    if (choice == 1) {
+        selected_matrix = matrix1;
+    } else if (choice == 2) {
+        selected_matrix = matrix2;
+    } else {
+        std::cout << "Invalid choice." << std::endl;
+        return 0;
+    }
+    int col1, col2;
+    std::cout << "Enter two column indices to swap ";
+    std::cin >> col1 >> col2;
+    swap_columns(selected_matrix, size, col1, col2);
     return 0;
 }
