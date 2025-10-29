@@ -95,6 +95,20 @@ void swap_columns(int matrix[max][max], int size, int col1, int col2) {
         std::cout << std::endl;
     }
 }
+void update_element(int matrix[max][max], int size, int row, int col, int new_value) {
+    if (row < 0 || col < 0 || row >= size || col >= size) {
+        std::cout << "Invalid indices." << std::endl;
+        return;
+    }
+    matrix[row][col] = new_value;
+    std::cout << "After updating element at (" << row << ", " << col << ") to " << new_value << ":" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
 int main() {
     int matrix1[max][max];
@@ -139,5 +153,20 @@ int main() {
     std::cout << "Enter two column indices to swap ";
     std::cin >> col1 >> col2;
     swap_columns(selected_matrix, size, col1, col2);
+    std::cout << "Choose matrix to change the element of (1 or 2): ";
+    std::cin >> choice;
+    int (*selected_matrix)[max];
+    if (choice == 1) {
+        selected_matrix = matrix1;
+    } else if (choice == 2) {
+        selected_matrix = matrix2;
+    } else {
+        std::cout << "Invalid choice." << std::endl;
+        return 0;
+    }
+    int row, col, new_value;
+    std::cout << "Enter row index, column index, and new value: ";
+    std::cin >> row >> col >> new_value;
+    update_element(selected_matrix, size, row, col, new_value);
     return 0;
 }
