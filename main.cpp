@@ -59,7 +59,26 @@ void sum_diagonal_elements(int matrix[max][max], int size) {
     }
     std::cout << "Sum of diagonal elements: " << sum << std::endl;
 }
-int main (){
+void swap_rows(int matrix[max][max], int size, int row1, int row2) {
+    if (row1 < 0 || row2 < 0 || row1 >= size || row2 >= size) {
+        std::cout << "Invalid row indices." << std::endl;
+        return;
+    }
+    for (int j = 0; j < size; ++j) {
+        int temp = matrix[row1][j];
+        matrix[row1][j] = matrix[row2][j];
+        matrix[row2][j] = temp;
+    }
+    std::cout << "After swapping rows " << row1 << " and " << row2 << ":" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
     int matrix1[max][max];
     int matrix2[max][max];
     int size;
@@ -71,5 +90,9 @@ int main (){
     multiply_matrices(matrix1, matrix2, size);
     sum_diagonal_elements(matrix1, size);
     sum_diagonal_elements(matrix2, size);
+    int row1, row2;
+    std::cout << "Enter the row number from first matrix to swap: ";
+    std::cin >> row1 >> row2;
+    swap_rows(matrix1, size, row1, row2);
     return 0;
 }
