@@ -52,6 +52,13 @@ void multiply_matrices(int matrix1[max][max], int matrix2[max][max], int size) {
         std::cout << std::endl;
     }
 }
+void sum_diagonal_elements(int matrix[max][max], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += matrix[i][i];
+    }
+    std::cout << "Sum of diagonal elements: " << sum << std::endl;
+}
 int main (){
     int matrix1[max][max];
     int matrix2[max][max];
@@ -62,5 +69,7 @@ int main (){
     load_matrices(filename, matrix1, matrix2, size);
     add_matrices(matrix1, matrix2, size);
     multiply_matrices(matrix1, matrix2, size);
+    sum_diagonal_elements(matrix1, size);
+    sum_diagonal_elements(matrix2, size);
     return 0;
 }
