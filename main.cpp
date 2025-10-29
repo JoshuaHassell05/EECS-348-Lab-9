@@ -123,9 +123,9 @@ int main() {
     sum_diagonal_elements(matrix1, size);
     sum_diagonal_elements(matrix2, size);
     int choice;
+    int (*selected_matrix)[max];
     std::cout << "Choose matrix for row swap (1 or 2): ";
     std::cin >> choice;
-    int (*selected_matrix)[max];
     if (choice == 1) {
         selected_matrix = matrix1;
     } else if (choice == 2) {
@@ -140,7 +140,6 @@ int main() {
     swap_rows(selected_matrix, size, row1, row2);
     std::cout << "Choose matrix for column swap (1 or 2): ";
     std::cin >> choice;
-    int (*selected_matrix)[max];
     if (choice == 1) {
         selected_matrix = matrix1;
     } else if (choice == 2) {
@@ -155,7 +154,6 @@ int main() {
     swap_columns(selected_matrix, size, col1, col2);
     std::cout << "Choose matrix to change the element of (1 or 2): ";
     std::cin >> choice;
-    int (*selected_matrix)[max];
     if (choice == 1) {
         selected_matrix = matrix1;
     } else if (choice == 2) {
