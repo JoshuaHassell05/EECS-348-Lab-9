@@ -20,6 +20,21 @@ void load_matrices(const std::string& filename, int matrix1[max][max], int matri
     }
     file.close();
 }
+void add_matrices(int matrix1[max][max], int matrix2[max][max], int size) {
+    int result[max][max];
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    std::cout << "Resultant Matrix after Addition:" << std::endl;
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            std::cout << result[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 int main (){
     int matrix1[max][max];
     int matrix2[max][max];
@@ -28,5 +43,6 @@ int main (){
     std::cout << "Enter the file name: ";
     std::cin >> filename;
     load_matrices(filename, matrix1, matrix2, size);
+    add_matrices(matrix1, matrix2, size);
     return 0;
 }
